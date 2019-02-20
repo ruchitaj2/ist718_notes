@@ -1,0 +1,44 @@
+MapReduce exercises:
+Document search: Each data point is the line of a document. Suppose we are searching for the lines that contain a certain word "ERROR".
+Final output is the list of lines that contain the word "ERROR".
+
+Solution 1:
+
+FInd the error and assign a key for lines that contains word "ERROR", instead of treating each lineas a data point (key)
+and value(ERROR) and if there are many errors in one line and other lines without errors, it will take up much memory space.
+
+def f(e)
+  if "ERROR" in e:
+    return [e, None]
+  return []
+def g(v1,v2):
+  return None
+ 
+ 
+ 
+ Reserve web-link graph: Each element data point is a key-value pair where key is a URL A* and value is a list of URLs contained in the URL *A. 
+ The final output should be a list of key-value pairs where key is URL B and value is a list of URLs that are linked to B.
+ 
+ Solution:
+ 
+ Representing in the graphical format:
+ 
+ A ----> D
+ 
+ Tuple (A, [D])            ----------------------------->             (D, [A,E])
+       (B, [D.E])               Map Function outcome                  (E, [B])
+                                    (D, [A])
+                                    (D, [B])
+                                    (D, [E])
+       
+       
+ Map Function:
+ 
+ def f(e):
+  return [(d[e[0]]) for d in e[1]]
+  
+  
+ Reduce FUnction:
+ def g(v1 , v2):
+    return V1+V2
+  
